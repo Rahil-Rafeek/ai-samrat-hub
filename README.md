@@ -46,9 +46,9 @@ Built with an enterprise **warm-white aesthetic**, strict **zero-trust proctorin
 
 | Environment | URL | Purpose |
 | :--- | :--- | :--- |
-| **Permanent Cloud (Render)** | [https://ai-samrat-assessment-hub.onrender.com](https://ai-samrat-assessment-hub.onrender.com) | 24/7 cloud-hosted production web service |
+| **Permanent Cloud (Render 24/7)** | [https://ai-samrat-hub.onrender.com](https://ai-samrat-hub.onrender.com) | 24/7 permanent cloud production web service (never crashes) |
+| **Permanent Credential Verification** | [https://ai-samrat-hub.onrender.com/verify](https://ai-samrat-hub.onrender.com/verify) | Official public certificate lookup & QR scan verification |
 | **Active Live Tunnel** | [https://private-maintain-achieving-artwork.trycloudflare.com](https://private-maintain-achieving-artwork.trycloudflare.com) | Real-time SSL encrypted edge preview |
-| **Public Credential Verification** | [https://private-maintain-achieving-artwork.trycloudflare.com/verify](https://private-maintain-achieving-artwork.trycloudflare.com/verify) | Public certificate lookup & QR scan target |
 | **Local Integrated Backend** | [http://localhost:8080](http://localhost:8080) | Standalone JAR serving both API and bundled frontend |
 | **Vite Dev Server** | [http://localhost:5173](http://localhost:5173) | Frontend development with hot-module replacement |
 
@@ -389,7 +389,7 @@ To host the platform permanently in the cloud with zero downtime:
 6. Click **Deploy Web Service**!
 
 Render will build the multi-stage container and provide your permanent URL:
-👉 **`https://ai-samrat-assessment-hub.onrender.com`**
+👉 **`https://ai-samrat-hub.onrender.com`**
 
 ---
 
