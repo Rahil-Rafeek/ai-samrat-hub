@@ -19,7 +19,7 @@ COPY backend/src ./src
 RUN mvn clean package -DskipTests -B
 
 # Stage 2: Ultra-light Production Runtime
-FROM amazoncorretto:21-alpine-jre
+FROM amazoncorretto:21-alpine
 WORKDIR /app
 
 # Add unprivileged application user
