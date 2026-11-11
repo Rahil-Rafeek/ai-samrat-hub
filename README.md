@@ -4,12 +4,13 @@ AI SAMRAT Assessment Hub is a production-grade enterprise technical assessment a
 
 ---
 
-## 🌐 Public Live Link (Active 24/7)
+## 🌐 Public Live Links
 
-- **Production Live URL**: [https://word-subsidiary-recognition-alignment.trycloudflare.com](https://word-subsidiary-recognition-alignment.trycloudflare.com)
+- **Permanent Cloud URL (Render)**: [https://ai-samrat-assessment-hub.onrender.com](https://ai-samrat-assessment-hub.onrender.com)
+- **Active Tunnel URL**: [https://word-apart-extend-camps.trycloudflare.com](https://word-apart-extend-camps.trycloudflare.com)
+- **Public Credential Verification**: [https://word-apart-extend-camps.trycloudflare.com/verify](https://word-apart-extend-camps.trycloudflare.com/verify)
 - **Local Port**: `http://localhost:8080` (Backend + Integrated Frontend)
 - **Vite Dev Server**: `http://localhost:5173` (Frontend Hot-Reloading)
-- **Public Credential Verification**: [https://word-subsidiary-recognition-alignment.trycloudflare.com/verify](https://word-subsidiary-recognition-alignment.trycloudflare.com/verify)
 
 ---
 
