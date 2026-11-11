@@ -1,0 +1,103 @@
+version: '3.8'
+
+services:
+  # ==========================================
+  # Relational Database: PostgreSQL 16
+  # ==========================================
+  postgres:
+    image: postgres:16-alpine
+    container_name: aisamrat-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-examhub}
+      POSTGRES_USER: ${POSTGRES_USER:-aisamrat}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-Aisamrat@SecurePass2026}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - examhub-net
+
+  # ==========================================
+  # Cache & Real-Time Coordination: Redis 7
+  # ==========================================
+  redis:
+    image: redis:7-alpine
+    container_name: aisamrat-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - examhub-net
+
+  # ==========================================
+  # Core Backend: Java 21 / Spring Boot 3.x
+  # ==========================================
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: aisamrat-backend
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-examhub}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER:-aisamrat}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:-Aisamrat@SecurePass2026}
+      SPRING_DATA_REDIS_HOST: redis
+      SPRING_DATA_REDIS_PORT: 6379
+      EXAMHUB_JWT_SECRET: ${JWT_SECRET:-aiSamratSuperSecretKeyForJwtAuthenticationEnterprise2026PlatformSecurityToken256BitMinimumLength}
+      EXAMHUB_JWT_EXPIRATION_MS: 86400000
+    volumes:
+      - certificates-data:/app/certificates
+      - backups-data:/app/backups
+    networks:
+      - examhub-net
+
+  # ==========================================
+  # Frontend: React 18 / Vite / Nginx Reverse Proxy
+  # ==========================================
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: aisamrat-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+    networks:
+      - examhub-net
+
+networks:
+  examhub-net:
+    driver: bridge
+
+volumes:
+  pgdata:
+  redisdata:
+  certificates-data:
+  backups-data:
+

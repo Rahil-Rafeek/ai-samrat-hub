@@ -1,0 +1,43 @@
+spring:
+  config:
+    activate:
+      on-profile: test
+  application:
+    name: examhub-backend-test
+  datasource:
+    url: jdbc:h2:mem:examhub_test;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH;DB_CLOSE_DELAY=-1
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ""
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+  h2:
+    console:
+      enabled: false
+
+examhub:
+  jwt:
+    secret: "aiSamratSuperSecretKeyForJwtAuthenticationEnterprise2026PlatformSecurityToken256BitMinimumLength"
+    expiration-ms: 86400000
+  exam:
+    default-duration-minutes: 60
+    total-questions: 50
+    marks-per-question: 2.0
+    total-marks: 100.0
+    reconnection-grace-seconds: 120
+    heartbeat-timeout-seconds: 30
+    tab-switch-limit: 3
+    fullscreen-exit-limit: 3
+  proctoring:
+    default-mode: "CALIBRATED"
+    require-webcam: true
+    require-screen-share: true
+  certificates:
+    issuer-name: "AI SAMRAT Global Certification Authority"
+    verification-base-url: "http://localhost:5173/verify-certificate"
+    director-name: "Dr. Vikramaditya Sharma"
+    director-title: "Chief Academic Officer, AI SAMRAT"
+

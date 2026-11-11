@@ -1,0 +1,38 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: examhub-backend
+  profiles:
+    active: local
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+# Custom application properties
+examhub:
+  jwt:
+    secret: "aiSamratSuperSecretKeyForJwtAuthenticationEnterprise2026PlatformSecurityToken256BitMinimumLength"
+    expiration-ms: 86400000 # 24 hours
+  exam:
+    default-duration-minutes: 60
+    total-questions: 50
+    marks-per-question: 2.0
+    total-marks: 100.0
+    reconnection-grace-seconds: 120
+    heartbeat-timeout-seconds: 30
+    tab-switch-limit: 3 # 3 warnings before termination
+    fullscreen-exit-limit: 3 # 3 warnings before termination
+  proctoring:
+    default-mode: "CALIBRATED" # OFF, ON, CALIBRATED
+    require-webcam: true
+    require-screen-share: true
+  certificates:
+    issuer-name: "AI SAMRAT PRIVATE LIMITED"
+    verification-base-url: "http://localhost:5173/verify"
+    director-name: "Deepak Ganer"
+    director-title: "Director & Authorised Signatory"
+
